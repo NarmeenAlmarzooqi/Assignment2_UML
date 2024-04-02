@@ -1,0 +1,77 @@
+# museum_classes.py
+
+# Defines an artwork with attributes and a method to display its details
+class Artwork:
+    def __init__(self, title, artist, creation_date, significance, location):
+        self.title = title
+        self.artist = artist
+        self.creation_date = creation_date
+        self.significance = significance
+        self.location = location
+
+    def display_artwork(self):
+        print(f"Artwork: {self.title}, Artist: {self.artist}, Year: {self.creation_date}, Location: {self.location}, Significance: {self.significance}")
+
+# Base class for an event at the museum
+class Event:
+    def __init__(self, name, location, start_date, end_date):
+        self.name = name
+        self.location = location
+        self.start_date = start_date
+        self.end_date = end_date
+        self.artworks = []
+
+    def add_artwork(self, artwork):
+        self.artworks.append(artwork)
+
+    def display_event(self):
+        print(f"Event: {self.name}, Location: {self.location}, Dates: {self.start_date} to {self.end_date}")
+        print("Artworks Featured:")
+        for artwork in self.artworks:
+            artwork.display_artwork()
+
+# Represents a specific type of event, an exhibition
+class Exhibition(Event):
+    def __init__(self, name, location, start_date, end_date, featured_artworks=[]):
+        super().__init__(name, location, start_date, end_date)
+        self.featured_artworks = featured_artworks
+        for artwork in featured_artworks:
+            self.add_artwork(artwork)
+
+    def display_exhibition(self):
+        super().display_event()
+
+# Represents a visitor to the museum, capable of purchasing tickets
+class Visitor:
+    def __init__(self, name, age, visitor_type):
+        self.name = name
+        self.age = age
+        self.visitor_type = visitor_type
+        self.tickets = []
+
+    def __add__(self, ticket):
+        self.purchase_ticket(ticket)
+        return self
+
+    def purchase_ticket(self, ticket):
+        self.tickets.append(ticket)
+
+    def display_purchases(self):
+        print(f"\nVisitor: {self.name}, Tickets Purchased:")
+        for ticket in self.tickets:
+            ticket.display_ticket_details()
+
+# Represents a ticket purchased for an event, with pricing calculated based on visitor type
+class Ticket:
+    def __init__(self, event, visitor_type, base_price=100):
+        self.event = event
+        self.price = self.calculate_price(visitor_type, base_price)
+
+    def calculate_price(self, visitor_type, base_price):
+        if visitor_type == "child" or visitor_type == "student":
+            return (base_price * 0.5) + (base_price * 0.05)  # 50% discount + 5% VAT for eligible visitors
+        else:
+            return base_price + (base_price * 0.05)  # Standard price + 5% VAT for adults
+
+    def display_ticket_details(self):
+        print(f"Ticket for: {self.event.name}, Price: {self.price} AED")
