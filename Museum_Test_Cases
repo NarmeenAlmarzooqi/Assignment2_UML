@@ -1,4 +1,8 @@
-# Demo Test Cases
+# Importing Class File
+from museum_classes import *
+
+
+# Test Cases
 if __name__ == "__main__":
     try:
         # Artwork and Exhibition - Aggregation relationship demonstrated
