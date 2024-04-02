@@ -73,3 +73,25 @@ class Visitor:
 
 
 
+
+
+# Ticket class representing a ticket purchased for an event
+class Ticket:
+    def __init__(self, event, visitor_type, base_price=100):
+        # initialize ticket with event, visitor type, and base price
+        self.event = event
+        self.price = self.calculate_price(visitor_type, base_price)  # price includes discount logic and VAT
+
+    def calculate_price(self, visitor_type, base_price):
+        # calculate the price of the ticket based on visitor type
+        if visitor_type == "child" or visitor_type == "student":
+            return (base_price * 0.5) + (base_price * 0.05)  # 50% discount + 5% VAT for children and students
+        else:
+            return base_price + (base_price * 0.05)  # Standard price + 5% VAT for adults
+
+    def display_ticket_details(self):
+        # print the details of the ticket
+        print(f"Ticket for: {self.event.name}, Price: {self.price} AED")
+
+
+
