@@ -47,4 +47,29 @@ class Exhibition(Event):
         super().display_event()
 
 
+# Visitor class representing a visitor to the museum
+class Visitor:
+    def __init__(self, name, age, visitor_type):
+        # initialize visitor with their details
+        self.name = name
+        self.age = age
+        self.visitor_type = visitor_type
+        self.tickets = []  # this will use composition relationship
+
+    def __add__(self, ticket):
+        # enable adding a ticket to the visitor, demonstrating composition
+        self.purchase_ticket(ticket)
+        return self
+
+    def purchase_ticket(self, ticket):
+        # purchase a ticket, adding it to the visitor's collection of tickets
+        self.tickets.append(ticket)
+
+    def display_purchases(self):
+        # print all the tickets purchased by the visitor
+        print(f"\nVisitor: {self.name}, Tickets Purchased:")
+        for ticket in self.tickets:
+            ticket.display_ticket_details()
+
+
 
