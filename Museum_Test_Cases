@@ -1,0 +1,25 @@
+# Imports all classes from museum_classes file (attached in the main link)
+from museum_classes import Artwork, Event, Exhibition, Visitor, Ticket
+
+if __name__ == "__main__":
+    try:
+        # Test Case A: Adding new artwork to the museum's collection
+        starry_night = Artwork("Starry Night", "Vincent Van Gogh", 1889, "Post-Impressionism", "Permanent Gallery")
+        starry_night.display_artwork()
+
+        # Test Case B: Opening a new exhibition at the museum
+        renaissance_art = Exhibition("Renaissance Art", "Gallery 1", "2024-04-01", "2024-10-01", [starry_night])
+        renaissance_art.display_exhibition()
+
+        # Test Case C: Purchase of tickets by individuals
+        visitor1 = Visitor("Afra Almarzooqi", 28, "adult")
+        visitor1 += Ticket(renaissance_art, jane_doe.visitor_type, 100)  # Operator overloading used for ticket purchase
+        
+        visitor2 = Visitor("Meera Almarzooqi", 12, "child")
+        visitor2 += Ticket(renaissance_art, john_doe.visitor_type, 100)
+
+        visitor1.display_purchases()
+        visitor2.display_purchases()
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
