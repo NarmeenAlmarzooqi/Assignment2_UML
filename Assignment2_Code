@@ -1,0 +1,15 @@
+# Artwork class representing an artwork in the museum
+class Artwork:
+    def __init__(self, title, artist, creation_date, significance, location):
+        # initialize artwork with its details
+        self.title = title
+        self.artist = artist
+        self.creation_date = creation_date
+        self.significance = significance
+        self.location = location
+
+    def display_artwork(self):
+        # print the artwork details
+        print(f"Artwork: {self.title}, Artist: {self.artist}, Year: {self.creation_date}, Location: {self.location}, Significance: {self.significance}")
+
+
