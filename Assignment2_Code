@@ -13,3 +13,38 @@ class Artwork:
         print(f"Artwork: {self.title}, Artist: {self.artist}, Year: {self.creation_date}, Location: {self.location}, Significance: {self.significance}")
 
 
+
+# Event class
+class Event:
+    def __init__(self, name, location, start_date, end_date):
+        # initialize event with its details
+        self.name = name
+        self.location = location
+        self.start_date = start_date
+        self.end_date = end_date
+        self.artworks = []  # this will use aggregation relationship
+
+    def add_artwork(self, artwork):
+        # add an artwork to the event
+        self.artworks.append(artwork)
+
+    def display_event(self):
+        # print the event details along with the artworks featured
+        print(f"Event: {self.name}, Location: {self.location}, Dates: {self.start_date} to {self.end_date}")
+        print("Artworks Featured:")
+        for artwork in self.artworks:
+            artwork.display_artwork()
+
+# Exhibition class representing a specific type of event, an exhibition
+class Exhibition(Event):
+    def __init__(self, name, location, start_date, end_date, featured_artworks=[]):
+        # initialize exhibition with its details, inheriting from Event
+        super().__init__(name, location, start_date, end_date)
+        self.featured_artworks = featured_artworks  # this is also aggregation
+
+    def display_exhibition(self):
+        # display the exhibition, which is a specific type of event
+        super().display_event()
+
+
+
